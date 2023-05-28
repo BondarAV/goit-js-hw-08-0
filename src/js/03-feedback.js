@@ -8,10 +8,16 @@ if (JSON.parse(localStorage.getItem("feedback-form-state")) === null) {
     message: "",
   };
 
-  form.addEventListener("input", (event) => {
-    storageObject[event.target.name] = event.target.value;
-    localStorage.setItem("feedback-form-state", JSON.stringify(storageObject));
-  });
+  form.addEventListener(
+    "input",
+    _.throttle((event) => {
+      storageObject[event.target.name] = event.target.value;
+      localStorage.setItem(
+        "feedback-form-state",
+        JSON.stringify(storageObject)
+      );
+    }, 500)
+  );
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -40,10 +46,16 @@ if (JSON.parse(localStorage.getItem("feedback-form-state")) === null) {
   setDefaultInput("input", "email");
   setDefaultInput("textarea", "message");
 
-  form.addEventListener("input", (event) => {
-    storageObject[event.target.name] = event.target.value;
-    localStorage.setItem("feedback-form-state", JSON.stringify(storageObject));
-  });
+  form.addEventListener(
+    "input",
+    _.throttle((event) => {
+      storageObject[event.target.name] = event.target.value;
+      localStorage.setItem(
+        "feedback-form-state",
+        JSON.stringify(storageObject)
+      );
+    }, 500)
+  );
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
